@@ -15,6 +15,12 @@
 
 <body>
 
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Animated Ambient Particle Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
   <!-- =========================================================
      NAVIGATION
 ========================================================== -->
@@ -59,11 +65,17 @@
         <div class="hero-content">
           <div class="hero-tag">Available for internships &amp; opportunities</div>
 
-          <div class="hero-photo-wrap" aria-label="Profile image">
-            <img class="hero-photo" src="Profile.jpeg" alt="Jahnavi Priya profile" />
+          <div class="hero-photo-wrap" aria-label="Professional portrait image">
+            <div class="photo-glow-ring"></div>
+            <img class="hero-photo" src="Professional-pic.jpeg" alt="Jahnavi Priya professional headshot" />
+            <div class="photo-status-badge" title="Open to Internships & Opportunities">
+              <span class="pulse-dot"></span>
+              <span class="badge-text">Open for Roles</span>
+            </div>
           </div>
 
-          <p class="hero-title">Aspiring Backend &amp; AI Engineer</p>
+          <h1 class="hero-title"><span id="typewriter">Aspiring Backend &amp; AI Engineer</span><span
+              class="typewriter-cursor">|</span></h1>
 
           <p class="hero-stack">
             <span>Backend Development</span> &nbsp;•&nbsp;
@@ -85,14 +97,22 @@
           </p>
 
           <div class="hero-actions">
-            <a href="resume.pdf" class="btn btn-primary" download aria-label="Download resume">
+            <button id="openResumeBtn" class="btn btn-primary btn-glow" aria-label="View Resume modal">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              View Resume
+            </button>
+            <a href="levroxen.pdf" class="btn btn-outline btn-download" download aria-label="Download resume">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Download Resume
+              Download PDF
             </a>
             <a href="#contact" class="btn btn-outline">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -299,6 +319,15 @@
               </svg>
               DBMS
             </div>
+            <div class="skill-card">
+              <svg class="skill-icon-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1" stroke="var(--blue)" stroke-width="1.5" />
+                <rect x="14" y="3" width="7" height="7" rx="1" stroke="var(--blue)" stroke-width="1.5" />
+                <rect x="3" y="14" width="7" height="7" rx="1" stroke="var(--blue)" stroke-width="1.5" />
+                <rect x="14" y="14" width="7" height="7" rx="1" stroke="var(--text-muted)" stroke-width="1.5" />
+              </svg>
+              Computer Networks
+            </div>
           </div>
         </div>
 
@@ -333,6 +362,18 @@
           <div class="projects-track">
 
             <article class="project-card">
+              <div class="project-img no-image"><span></span><small></small></div>
+              <div class="project-body">
+                <h3 class="project-title"></h3>
+                <p class="project-desc">Current project under development.</p>
+                <div class="project-stack"><span class="stack-tag"></span><span class="stack-tag">
+                  </span><span class="stack-tag"></span></div>
+                <div class="project-actions"><a href="https://github.com/jahnavipriya05/banking-system-python"
+                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer"></a></div>
+              </div>
+            </article>
+
+            <article class="project-card">
               <div class="project-img"><img src="project_images/medislot.png" alt="MediSlot project screenshot"
                   loading="lazy" /></div>
               <div class="project-body">
@@ -343,11 +384,11 @@
                     class="stack-tag">Python</span><span class="stack-tag">SQL</span><span class="stack-tag">JWT
                     Auth</span></div>
                 <div class="project-actions">
-                  <a href="https://medislot-z90w.onrender.com" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">Live Demo
+                  <a href="https://medislot-z90w.onrender.com" class="btn btn-outline btn-sm" target="_blank"
+                    rel="noopener noreferrer">Live Demo
                   </a>
-                  <a href="https://github.com/jahnavipriya05"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub
+                  <a href="https://github.com/jahnavipriya05" class="btn btn-outline btn-sm" target="_blank"
+                    rel="noopener noreferrer">GitHub
                   </a>
                 </div>
               </div>
@@ -364,11 +405,11 @@
                     class="stack-tag">Python</span><span class="stack-tag">SQL</span><span class="stack-tag">CRUD</span>
                 </div>
                 <div class="project-actions">
-                  <a href="https://trackforge-mcx7.onrender.com/" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">Live Demo
+                  <a href="https://trackforge-mcx7.onrender.com/" class="btn btn-outline btn-sm" target="_blank"
+                    rel="noopener noreferrer">Live Demo
                   </a>
-                  <a href="https://github.com/jahnavipriya05"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub
+                  <a href="https://github.com/jahnavipriya05" class="btn btn-outline btn-sm" target="_blank"
+                    rel="noopener noreferrer">GitHub
                   </a>
                 </div>
               </div>
@@ -382,30 +423,36 @@
                 <p class="project-desc">An AI-first conversational assistant that explores natural language
                   interactions, quick replies, and smart response handling.</p>
                 <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">Generative
-                    AI</span><span class="stack-tag">Flask</span><span class="stack-tag">LLM</span><span class="stack-tag">NLP</span></div>
-                <div class="project-actions"><a href="https://github.com/jahnavipriya05/ai-smart-chatbot" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">Not Live Yet</a><a href="https://github.com/jahnavipriya05/ai-smart-chatbot"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                    AI</span><span class="stack-tag">Flask</span><span class="stack-tag">LLM</span><span
+                    class="stack-tag">NLP</span></div>
+                <div class="project-actions"><a href="https://github.com/jahnavipriya05/ai-smart-chatbot"
+                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Not Live Yet</a><a
+                    href="https://github.com/jahnavipriya05/ai-smart-chatbot" class="btn btn-outline btn-sm"
+                    target="_blank" rel="noopener noreferrer">GitHub</a></div>
               </div>
             </article>
 
             <article class="project-card">
-              <div class="project-img"><img src="project_images/AI-Content-Generator.png" alt="AI powered chatbot project screenshot"
-                  loading="lazy" /></div>
+              <div class="project-img"><img src="project_images/AI-Content-Generator.png"
+                  alt="AI powered chatbot project screenshot" loading="lazy" /></div>
               <div class="project-body">
                 <h3 class="project-title">AI Powered Chatbot</h3>
-                <p class="project-desc">An AI-powered content generation platform that creates LinkedIn posts, Instagram captions, blog introductions, and product descriptions based on user-selected tone, audience, and content type using Generative AI.</p>
+                <p class="project-desc">An AI-powered content generation platform that creates LinkedIn posts, Instagram
+                  captions, blog introductions, and product descriptions based on user-selected tone, audience, and
+                  content type using Generative AI.</p>
                 <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">Generative
-                    AI</span><span class="stack-tag">Flask</span><span class="stack-tag">LLM</span><span class="stack-tag">NLP</span></div>
-                <div class="project-actions"><a href="https://github.com/jahnavipriya05/AI-Content-Generator" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">Not Live Yet</a><a href="https://github.com/jahnavipriya05/AI-Content-Generator"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                    AI</span><span class="stack-tag">Flask</span><span class="stack-tag">LLM</span><span
+                    class="stack-tag">NLP</span></div>
+                <div class="project-actions"><a href="https://github.com/jahnavipriya05/AI-Content-Generator"
+                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Not Live Yet</a><a
+                    href="https://github.com/jahnavipriya05/AI-Content-Generator" class="btn btn-outline btn-sm"
+                    target="_blank" rel="noopener noreferrer">GitHub</a></div>
               </div>
             </article>
 
             <article class="project-card">
-              <div class="project-img"><img src="project_images/Top10.png"
-                  alt="Netflix analysis project screenshot" loading="lazy" /></div>
+              <div class="project-img"><img src="project_images/Top10.png" alt="Netflix analysis project screenshot"
+                  loading="lazy" /></div>
               <div class="project-body">
                 <h3 class="project-title">Netflix Analysis Project</h3>
                 <p class="project-desc">A data analysis project that studies content trends, genre popularity, release
@@ -416,8 +463,9 @@
                 <div class="project-actions">
                   <!-- <a href="https://github.com/jahnavipriya05/Netflix-Data-Analysis" class="btn btn-outline btn-sm"
                     target="_blank" rel="noopener noreferrer">Live Demo</a> -->
-                    <a href="https://github.com/jahnavipriya05/Netflix-Data-Analysis"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                  <a href="https://github.com/jahnavipriya05/Netflix-Data-Analysis" class="btn btn-outline btn-sm"
+                    target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
               </div>
             </article>
 
@@ -426,15 +474,17 @@
                   alt="IPL Data analysis project screenshot" loading="lazy" /></div>
               <div class="project-body">
                 <h3 class="project-title">IPL Data Analysis</h3>
-                <p class="project-desc">An analysis project focusing on IPL match data, player performance, and team statistics.</p>
+                <p class="project-desc">An analysis project focusing on IPL match data, player performance, and team
+                  statistics.</p>
                 <div class="project-stack"><span class="stack-tag">Python</span><span
                     class="stack-tag">Pandas</span><span class="stack-tag">NumPy</span><span
                     class="stack-tag">Matplotlib</span><span class="stack-tag">EDA</span></div>
                 <div class="project-actions">
                   <!-- <a href="https://github.com/jahnavipriya05/IPL-Data-Analysis" class="btn btn-outline btn-sm"
                     target="_blank" rel="noopener noreferrer">Live Demo</a> -->
-                    <a href="https://github.com/jahnavipriya05/IPL-Data-Analysis"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                  <a href="https://github.com/jahnavipriya05/IPL-Data-Analysis" class="btn btn-outline btn-sm"
+                    target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
               </div>
             </article>
 
@@ -446,8 +496,8 @@
                   and basic transaction logic with Python fundamentals.</p>
                 <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">Core
                     Logic</span><span class="stack-tag">CLI</span></div>
-                <div class="project-actions"><a href="https://github.com/jahnavipriya05/banking-system-python" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                <div class="project-actions"><a href="https://github.com/jahnavipriya05/banking-system-python"
+                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
               </div>
             </article>
 
@@ -459,8 +509,8 @@
                   categories, and building simple budgeting flows.</p>
                 <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">OOP</span><span
                     class="stack-tag">CLI</span></div>
-                <div class="project-actions"><a href="https://github.com/jahnavipriya05/expense-tracker-python" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                <div class="project-actions"><a href="https://github.com/jahnavipriya05/expense-tracker-python"
+                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
               </div>
             </article>
 
@@ -473,24 +523,26 @@
                   for e-commerce and product landing pages.</p>
                 <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span
                     class="stack-tag">Frontend</span><span class="stack-tag">Responsive</span></div>
-                <div class="project-actions"><a href="https://github.com/jahnavipriya05/amazon-clone" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">Live Demo</a><a href="https://github.com/jahnavipriya05/amazon-clone"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                <div class="project-actions"><a href="https://github.com/jahnavipriya05/amazon-clone"
+                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a><a
+                    href="https://github.com/jahnavipriya05/amazon-clone" class="btn btn-outline btn-sm" target="_blank"
+                    rel="noopener noreferrer">GitHub</a></div>
               </div>
             </article>
 
             <article class="project-card">
-              <div class="project-img"><img src="project_images/home.png"
-                  alt="Apple clone website project screenshot" loading="lazy" /></div>
+              <div class="project-img"><img src="project_images/home.png" alt="Apple clone website project screenshot"
+                  loading="lazy" /></div>
               <div class="project-body">
                 <h3 class="project-title">Apple Clone </h3>
                 <p class="project-desc">Frontend practice work focused on layout, responsiveness, and polished UI design
                   for e-commerce and product landing pages.</p>
                 <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span
                     class="stack-tag">Frontend</span><span class="stack-tag">Responsive</span></div>
-                <div class="project-actions"><a href="https://github.com/jahnavipriya05/apple-clone" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">Live Demo</a><a href="https://github.com/jahnavipriya05/apple-clone"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                <div class="project-actions"><a href="https://github.com/jahnavipriya05/apple-clone"
+                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a><a
+                    href="https://github.com/jahnavipriya05/apple-clone" class="btn btn-outline btn-sm" target="_blank"
+                    rel="noopener noreferrer">GitHub</a></div>
               </div>
             </article>
 
@@ -504,9 +556,10 @@
                 <div class="project-stack"><span class="stack-tag">JavaScript</span><span
                     class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">Game
                     Logic</span></div>
-                <div class="project-actions"><a href="https://github.com/jahnavipriya05/rock-paper-scissors" class="btn btn-outline btn-sm"
-                    target="_blank" rel="noopener noreferrer">Live Demo</a><a href="https://github.com/jahnavipriya05/rock-paper-scissors"
-                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+                <div class="project-actions"><a href="https://github.com/jahnavipriya05/rock-paper-scissors"
+                    class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Live Demo</a><a
+                    href="https://github.com/jahnavipriya05/rock-paper-scissors" class="btn btn-outline btn-sm"
+                    target="_blank" rel="noopener noreferrer">GitHub</a></div>
               </div>
             </article>
 
@@ -549,6 +602,13 @@
           </article>
 
           <article class="cert-card">
+            <img src="certificates/SkillDzire.jpg" alt="Skill Dzire certification" loading="lazy" />
+            <div class="cert-badge">Skill Dzire</div>
+            <div class="cert-title">Generative AI</div>
+            <div class="cert-issuer">SkillDzire · AI Intern</div>
+          </article>
+
+          <article class="cert-card">
             <img src="certificates/APSSDC.jpg" alt="APSSDC certification" loading="lazy" />
             <div class="cert-badge">APSSDC</div>
             <div class="cert-title">AWS Certification</div>
@@ -576,7 +636,7 @@
             <div class="cert-issuer">Python skill certification · Beginner level</div>
           </article>
 
-          
+
           <article class="cert-card">
             <img src="certificates/mern.jpeg" alt="MERN certification" loading="lazy" />
             <div class="cert-badge">MERN</div>
@@ -685,7 +745,7 @@
           <div class="edu-period">2023 – 2027 &nbsp;·&nbsp; Currently Enrolled</div>
         </div>
         <div class="edu-cgpa">
-          <span class="edu-cgpa-num">9.1</span>
+          <span class="edu-cgpa-num">9.15</span>
           <div class="edu-cgpa-label">CGPA</div>
         </div>
         <div>
@@ -736,7 +796,7 @@
 
             <button type="submit" class="btn btn-primary">Send Message</button>
             <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-            <p class="form-note">This uses EmailJS to send your message directly to jahnavipriya1806@gmail.com.</p>
+            <p class="form-note">Ping me if you have any questions or opportunities!</p>
           </form>
         </div>
 
@@ -755,6 +815,65 @@
       </div>
     </div>
   </section>
+
+  <!-- =========================================================
+     RESUME MODAL
+========================================================== -->
+  <div id="resumeModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="resumeModalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <h3 id="resumeModalTitle">Jahnavi Priya — Resume</h3>
+        </div>
+        <div class="modal-actions">
+          <a href="levroxen.pdf" target="_blank" rel="noopener" class="btn btn-outline btn-sm" title="Open in new tab">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Open Tab
+          </a>
+          <a href="levroxen.pdf" download class="btn btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </a>
+          <button id="closeResumeBtn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="resumeIframe" data-src="levroxen.pdf" title="Resume PDF Preview"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating quick action buttons -->
+  <div class="floating-actions">
+    <button id="floatResumeBtn" class="float-btn float-resume" aria-label="Quick View Resume">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+      </svg>
+      <span>Resume</span>
+    </button>
+    <button id="backToTopBtn" class="float-btn float-top" aria-label="Back to top">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+  </div>
 
   <!-- =========================================================
      FOOTER

@@ -176,5 +176,236 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* -- Scroll Progress Bar & Back to Top ------------------- */
+  const scrollProgress = document.getElementById('scroll-progress');
+  const backToTopBtn = document.getElementById('backToTopBtn');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (scrollProgress) {
+      scrollProgress.style.width = `${scrollPercent}%`;
+    }
+
+    if (backToTopBtn) {
+      if (scrollTop > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+  });
+
+  backToTopBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* -- Dynamic Typewriter Effect for Hero Title ------------ */
+  const typewriterEl = document.getElementById('typewriter');
+  if (typewriterEl) {
+    const phrases = [
+      'Aspiring Backend & AI Engineer',
+      'FastAPI & Python Specialist',
+      'Generative AI Explorer',
+      'Scalable Systems Enthusiast'
+    ];
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    let typingSpeed = 90;
+
+    const type = () => {
+      const currentPhrase = phrases[phraseIdx];
+
+      if (isDeleting) {
+        typewriterEl.textContent = currentPhrase.substring(0, charIdx - 1);
+        charIdx--;
+        typingSpeed = 45;
+      } else {
+        typewriterEl.textContent = currentPhrase.substring(0, charIdx + 1);
+        charIdx++;
+        typingSpeed = 90;
+      }
+
+      if (!isDeleting && charIdx === currentPhrase.length) {
+        typingSpeed = 2200;
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        typingSpeed = 400;
+      }
+
+      setTimeout(type, typingSpeed);
+    };
+
+    setTimeout(type, 800);
+  }
+
+  /* -- Mouse Spotlight & Card Micro Tilt ------------------- */
+  const cards = document.querySelectorAll(
+    '.project-card, .skill-card, .cert-card, .profile-card, .edu-card'
+  );
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -4;
+      const rotateY = ((x - centerX) / centerX) * 4;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    });
+  });
+
+  /* -- Interactive Resume Modal --------------------------- */
+  const resumeModal = document.getElementById('resumeModal');
+  const openResumeBtn = document.getElementById('openResumeBtn');
+  const floatResumeBtn = document.getElementById('floatResumeBtn');
+  const closeResumeBtn = document.getElementById('closeResumeBtn');
+  const resumeIframe = document.getElementById('resumeIframe');
+
+  const openModal = () => {
+    if (!resumeModal) return;
+    if (resumeIframe && !resumeIframe.getAttribute('src')) {
+      resumeIframe.setAttribute('src', resumeIframe.getAttribute('data-src') || 'levroxen.pdf');
+    }
+    resumeModal.classList.add('active');
+    resumeModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    if (!resumeModal) return;
+    resumeModal.classList.remove('active');
+    resumeModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  openResumeBtn?.addEventListener('click', openModal);
+  floatResumeBtn?.addEventListener('click', openModal);
+  closeResumeBtn?.addEventListener('click', closeModal);
+
+  resumeModal?.addEventListener('click', (e) => {
+    if (e.target === resumeModal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && resumeModal?.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  /* -- Animated Particle Background Canvas ---------------- */
+  const canvas = document.getElementById('bg-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const particleCount = Math.min(Math.floor(width / 22), 55);
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 1.6 + 0.8;
+        this.alpha = Math.random() * 0.5 + 0.2;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(59, 130, 246, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    const animateParticles = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        p1.update();
+        p1.draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${0.18 * (1 - dist / 130)})`;
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+          }
+        }
+
+        const mdx = p1.x - mouseX;
+        const mdy = p1.y - mouseY;
+        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+        if (mdist < 160) {
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(mouseX, mouseY);
+          ctx.strokeStyle = `rgba(96, 165, 250, ${0.25 * (1 - mdist / 160)})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+
+      requestAnimationFrame(animateParticles);
+    };
+
+    animateParticles();
+  }
+
 });
 
